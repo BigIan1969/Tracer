@@ -3,6 +3,20 @@ import unittest
 import tracer as module0
 
 class test(unittest.TestCase):
+    def test_isstatic(self):
+        inst1 = module0.Tracer()
+        assert inst1 is not None
+        inst2 = module0.Tracer()
+        assert inst2 is not None
+        inst1.add_function_exclusion("test")
+        assert inst2.function_excluded("test")==True, "Tracer Object should be static (functionexclusions)"
+        inst1.add(show_trace1)
+        assert inst2.functions[0] is inst1.functions[0], "Tracer Object should be static (functions)"
+        inst1.add_module_exclusion("test")
+        assert inst2.module_excluded("test"), "Tracer Object should be static (moduleexclusions)"
+        inst1.add_event_filter(show_trace1,"call")
+        assert inst2.event_filter(show_trace1,"call"), "Tracer Object should be static (filters)"
+
     def test_case_0(self):
         var0 = module0.TracerClass()
         assert var0 is not None
@@ -50,3 +64,11 @@ class test(unittest.TestCase):
         var16 = 'k~^$'
         var17 = var4.add_function_exclusion(var16)
         assert var17 is None
+#dependencies
+def show_trace1(frame, event, arg):
+      code = frame.f_code
+      offset = frame.f_lasti
+
+
+      print(f"Trace1 | {code.co_name}\n", end=' ')
+      return show_trace1
