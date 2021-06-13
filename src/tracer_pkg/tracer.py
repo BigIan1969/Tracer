@@ -24,7 +24,7 @@ import sys
 import types
 class Tracer():
     """
-    Tracer is a wrapper class for sys.settrace()
+    tracewrapper is a wrapper class for sys.settrace()
     """
     @staticmethod
     def __init__():
@@ -35,7 +35,7 @@ class Tracer():
 
     @staticmethod
     def add(func):
-        """Adds a a tracer function (see sys.trace()) or the TracerClass.trace() method"""
+        """Adds a tracer function (see sys.trace()) or the TracerClass.trace() method"""
         if isinstance(func, types.FunctionType):
             Tracer.functions.append(func)
             Tracer.add_function_exclusion(func.__name__)
