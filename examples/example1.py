@@ -5,7 +5,6 @@ import opcode
 def show_trace1(frame, event, arg):
     code = frame.f_code
     offset = frame.f_lasti
-
     print(f"Trace1| {event:10} | {str(arg):>4} |", end=' ')
     print(f"{frame.f_lineno:>4} | {frame.f_lasti:>6} |", end=' ')
     print(f"{opcode.opname[code.co_code[offset]]:<18} | {str(frame.f_locals):<35} |")
@@ -15,7 +14,6 @@ def show_trace1(frame, event, arg):
 def show_trace2(frame, event, arg):
     code = frame.f_code
     offset = frame.f_lasti
-
     print(f"Trace2| {event:10} | {str(arg):>4} |", end=' ')
     print(f"{frame.f_lineno:>4} | {frame.f_lasti:>6} |", end=' ')
     print(f"{opcode.opname[code.co_code[offset]]:<18} | {str(frame.f_locals):<35} |")
@@ -39,7 +37,7 @@ def fib(n):
         i += 1
     return f1
 
-#Instaciate the Tracer() class
+#Instanciate the tracewrapper() class
 tracer=tracewrapper.tracewrapper()
 
 #Add our two demo show_trace functions
