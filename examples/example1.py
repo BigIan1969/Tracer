@@ -1,4 +1,4 @@
-from tracewrapper import *
+from tracewrapper import tracewrapper
 import opcode
 
 #Show_Trace function just like you'd feed to sys.settrace()
@@ -22,7 +22,7 @@ def show_trace2(frame, event, arg):
     return show_trace2
 
 #Show_Trace as a class
-class TClass(TracerClass):
+class TClass(tracewrapper.TracerClass):
     def trace(self, frame, event, arg):
         code = frame.f_code
         offset = frame.f_lasti
@@ -40,7 +40,7 @@ def fib(n):
     return f1
 
 #Instaciate the Tracer() class
-tracer=tracewrapper()
+tracer=tracewrapper.tracewrapper()
 
 #Add our two demo show_trace functions
 tracer.add(show_trace1)
