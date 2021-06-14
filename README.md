@@ -1,7 +1,7 @@
 # Tracewrapper
 Wrapper for Pythons sys.settrace
 
-Allows you to run multiple traces at once and also allows you to queue up a class instead of the default show_trace() function.
+Allows you to run multiple traces at once and also allows you to queue up a class instead of the default show_trace() function.  Also allows you to filter events, modules and functions.
 
 ## Example:
     from tracewrapper import tracewrapper
