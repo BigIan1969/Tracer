@@ -1,16 +1,17 @@
-# Tracer
+# Tracewrapper
 Wrapper for Pythons sys.settrace
 
 Allows you to run multiple traces at once and also allows you to queue up a class instead of the default show_trace() function.
 
 ## Example:
-    from tracer import *
+    from tracewrapper import *
     import opcode
 
     #Show_Trace function just like you'd feed to sys.settrace()
     def show_trace1(frame, event, arg):
         code = frame.f_code
         offset = frame.f_lasti
+
         print(f"Trace1| {event:10} | {str(arg):>4} |", end=' ')
         print(f"{frame.f_lineno:>4} | {frame.f_lasti:>6} |", end=' ')
         print(f"{opcode.opname[code.co_code[offset]]:<18} | {str(frame.f_locals):<35} |")
@@ -20,6 +21,7 @@ Allows you to run multiple traces at once and also allows you to queue up a clas
     def show_trace2(frame, event, arg):
         code = frame.f_code
         offset = frame.f_lasti
+
         print(f"Trace2| {event:10} | {str(arg):>4} |", end=' ')
         print(f"{frame.f_lineno:>4} | {frame.f_lasti:>6} |", end=' ')
         print(f"{opcode.opname[code.co_code[offset]]:<18} | {str(frame.f_locals):<35} |")
@@ -44,7 +46,7 @@ Allows you to run multiple traces at once and also allows you to queue up a clas
         return f1
 
     #Instaciate the Tracer() class
-    tracer=Tracer()
+    tracer=tracewrapper()
 
     #Add our two demo show_trace functions
     tracer.add(show_trace1)
@@ -56,7 +58,7 @@ Allows you to run multiple traces at once and also allows you to queue up a clas
     #Add TracerClass's trace method to Tracer
     tracer.add(tc.trace)
 
-    #Activate TClass()
+    #Activate it
     tc.start()
 
     #Start tracing
