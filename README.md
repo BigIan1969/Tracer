@@ -45,7 +45,7 @@ Allows you to run multiple traces at once and also allows you to queue up a clas
             i += 1
         return f1
 
-    #Instaciate the Tracer() class
+    #Instanciate the Tracer() class
     tracer=tracewrapper.tracewrapper()
 
     #Add our two demo show_trace functions
