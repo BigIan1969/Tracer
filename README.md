@@ -3,6 +3,13 @@ Wrapper for Pythons sys.settrace
 
 Allows you to run multiple traces at once and also allows you to queue up a class instead of the default show_trace() function.  Also allows you to filter events, modules and functions.
 
+## To Install:
+    pip3 install tracewrapper
+    
+    or
+    
+    python -m pip install tracewrapper
+
 ## Example:
     from tracewrapper import tracewrapper
     import opcode
