@@ -22,6 +22,8 @@
 
 import sys
 import types
+from pathlib import *
+
 class tracewrapper():
     """
     tracewrapper is a wrapper class for sys.settrace()
@@ -32,6 +34,7 @@ class tracewrapper():
         tracewrapper.functionexclusions=[]
         tracewrapper.moduleexclusions=[]
         tracewrapper.filters={}
+        tracewrapper.add_module_exclusion("tracewrapper.py")
 
     @staticmethod
     def add(func):
@@ -130,7 +133,7 @@ class tracewrapper():
     @staticmethod
     def module_excluded(ex):
         """Returns True if a module is to be excluded"""
-        if ex in tracewrapper.moduleexclusions:
+        if Path(ex).name in tracewrapper.moduleexclusions:
             return True
         else:
             return False

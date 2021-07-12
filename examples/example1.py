@@ -16,7 +16,7 @@ def show_trace2(frame, event, arg):
     offset = frame.f_lasti
     print(f"Trace2| {event:10} | {str(arg):>4} |", end=' ')
     print(f"{frame.f_lineno:>4} | {frame.f_lasti:>6} |", end=' ')
-    print(f"{opcode.opname[code.co_code[offset]]:<18} | {str(frame.f_locals):<35} |")
+    print(f"{opcode.opname[code.co_code[offset]]:<18} | {str(frame.f_locals):<35} | {code.co_name}")
     return show_trace2
 
 #Show_Trace as a class
