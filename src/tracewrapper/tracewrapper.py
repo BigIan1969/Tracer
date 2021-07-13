@@ -29,11 +29,13 @@ class tracewrapper():
     tracewrapper is a wrapper class for sys.settrace()
     """
     @staticmethod
-    def __init__():
+    def __init__(_trace_lines=True, _trace_opcodes=False):
         tracewrapper.functions=[]
         tracewrapper.functionexclusions=[]
         tracewrapper.moduleexclusions=[]
         tracewrapper.filters={}
+        tracewrapper._trace_lines=_trace_lines
+        tracewrapper._trace_opcodes=_trace_opcodes
         tracewrapper.add_module_exclusion("tracewrapper.py")
 
     @staticmethod
@@ -151,7 +153,8 @@ class tracewrapper():
     @staticmethod
     def tracerdespatcher(frame, event, arg):
         """Despatcher for the Tracer class"""
-        frame.f_trace_opcodes = True
+        frame.f_trace_opcodes = tracewrapper._trace_opcodes
+        frame.f_trace_lines = tracewrapper._trace_lines
         if not tracewrapper.function_excluded(frame.f_code.co_name) and not tracewrapper.module_excluded(frame.f_code.co_filename):
             for func in tracewrapper.functions:
                 if not tracewrapper.event_filter(func,event):
