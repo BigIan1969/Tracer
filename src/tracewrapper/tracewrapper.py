@@ -30,6 +30,11 @@ class tracewrapper():
     """
     @staticmethod
     def __init__(_trace_lines=True, _trace_opcodes=False):
+        """Initialise tracewrapper
+           Parameters:
+                _trace_lines boolean turns the trace lines event on default = True
+                _trace_opcodes boolean turns the trace opcodes event on default = False
+                """
         tracewrapper.functions=[]
         tracewrapper.functionexclusions=[]
         tracewrapper.moduleexclusions=[]
