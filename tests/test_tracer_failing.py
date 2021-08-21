@@ -3,214 +3,72 @@ import unittest
 import tracewrapper as module0
 
 class test(unittest.TestCase):
+    def test_isstatic(self):
+        inst1 = module0.tracewrapper()
+        assert inst1 is not None
+        inst2 = module0.tracewrapper()
+        assert inst2 is not None
+        inst1.add_function_exclusion("test")
+        assert inst2.function_excluded("test")==True, "Tracer Object should be static (functionexclusions)"
+        inst1.add(show_trace1)
+        assert inst2.functions[0] is inst1.functions[0], "Tracer Object should be static (functions)"
+        inst1.add_module_exclusion("test")
+        assert inst2.module_excluded("test"), "Tracer Object should be static (moduleexclusions)"
+        inst1.add_event_filter(show_trace1,"call")
+        assert inst2.event_filter(show_trace1,"call"), "Tracer Object should be static (filters)"
 
     def test_case_0(self):
-        try:
-            var0 = '\rq.wAncl'
-            var1 = module0.tracewrapper()
-            assert var1 is not None
-            var2 = var1.delete_module_exclusion(var0)
-            assert var2 is None
-            var3 = module0.tracewrapper()
-            assert var3 is not None
-            var4 = module0.tracewrapper()
-            assert var4 is not None
-            var5 = module0.TracerClass()
-            assert var5 is not None
-            var6 = var5.stop()
-            assert var6 is None
-            var7 = var5.start()
-            assert var7 is None
-            var8 = var5.start()
-            assert var8 is None
-            var9 = module0.TracerClass()
-            assert var9 is not None
-            var10 = module0.tracewrapper()
-            assert var10 is not None
-            var11 = {var9, var9, var10, var9}
-            var12 = var10.delete_module_exclusion(var11)
-        except BaseException:
-            pass
+        var0 = module0.tracewrapperClass()
+        assert var0 is not None
+        var1 = '9'
+        var2 = var0.stop()
+        assert var2 is None
+        var3 = module0.tracewrapper()
+        assert var3 is not None
+        var4 = var3.delete(var1)
+        assert var4 is None
+        var5 = var0.start()
+        assert var5 is None
+        var6 = [var2]
+        var7 = var3.delete(var6)
+        assert var7 is None
 
 
     def test_case_1(self):
-        try:
-            var0 = module0.tracewrapper()
-            assert var0 is not None
-            var1 = var0.stop()
-            assert var1 is None
-            var2 = 186.601552
-            var3 = None
-            var4 = 1302.49506
-            var5 = module0.TracerClass()
-            assert var5 is not None
-            var6 = var5.trace(var2, var3, var4)
-            assert var6 is None
-            var7 = -1727
-            var8 = module0.tracewrapper()
-            assert var8 is not None
-            var9 = var8.delete(var7)
-            assert var9 is None
-            var10 = module0.TracerClass()
-            assert var10 is not None
-            var11 = var10.stop()
-            assert var11 is None
-            var12 = module0.TracerClass()
-            assert var12 is not None
-            var13 = -2062.89
-            var14 = '.'
-            var15 = var10.trace(var13, var14, var13)
-            assert var15 is None
-            var16 = var8.start()
-            assert var16 is None
-            var17 = var8.function_excluded(var12)
-            assert var17 is False
-            var18 = 495
-            var19 = [var1]
-            var20 = var10.trace(var18, var19, var3)
-            assert var20 is None
-            var21 = set()
-            var22 = var8.add_module_exclusion(var21)
-        except BaseException:
-            pass
+        var0 = module0.TracerClass()
+        assert var0 is not None
+        var1 = var0.stop()
+        assert var1 is None
+        var2 = module0.TracerClass()
+        assert var2 is not None
+        var3 = 'sLS#_\x0bW_Q0Bt*pd'
+        var4 = module0.tracewrapper()
+        assert var4 is not None
+        var5 = var4.delete_function_exclusion(var3)
+        assert var5 is None
+        var6 = 'J?\\iN'
+        var7 = b''
+        var8 = {var2}
+        var9 = var2.trace(var6, var7, var8)
+        assert var9 is None
+        var10 = module0.TracerClass()
+        assert var10 is not None
+        var11 = {}
+        var12 = ',KBmn_4P'
+        var13 = var0.trace(var10, var11, var12)
+        assert var13 is None
+        var14 = var2.start()
+        assert var14 is None
+        var15 = var2.start()
+        assert var15 is None
+        var16 = 'k~^$'
+        var17 = var4.add_function_exclusion(var16)
+        assert var17 is None
+#dependencies
+def show_trace1(frame, event, arg):
+      code = frame.f_code
+      offset = frame.f_lasti
 
 
-    def test_case_2(self):
-        try:
-            var0 = module0.tracewrapper()
-            assert var0 is not None
-            var1 = module0.tracewrapper()
-            assert var1 is not None
-            var2 = None
-            var3 = var1.stop()
-            assert var3 is None
-            var4 = module0.tracewrapper()
-            assert var4 is not None
-            var5 = var4.add_function_exclusion(var2)
-        except BaseException:
-            pass
-
-
-    def test_case_3(self):
-        try:
-            var0 = b'R_R\xa5\xd2\x82\x05#O'
-            var1 = module0.tracewrapper()
-            assert var1 is not None
-            var2 = var1.delete_module_exclusion(var0)
-        except BaseException:
-            pass
-
-
-    def test_case_4(self):
-        try:
-            var0 = 122
-            var1 = "'NBuYy~^8mZ\n"
-            var2 = False
-            var3 = -236
-            var4 = [var3, var0, var0]
-            var5 = {var1, var1, var0}
-            var6 = 1189.3
-            var7 = module0.TracerClass()
-            assert var7 is not None
-            var8 = var4, var5, var6, var7
-            var9 = module0.tracewrapper()
-            assert var9 is not None
-            var10 = var9.add(var8)
-        except BaseException:
-            pass
-
-
-    def test_case_5(self):
-        try:
-            var0 = 1201.295
-            var1 = module0.TracerClass()
-            assert var1 is not None
-            var2 = module0.tracewrapper()
-            assert var2 is not None
-            var3 = var2.delete(var1)
-            assert var3 is None
-            var4 = module0.tracewrapper()
-            assert var4 is not None
-            var5 = False
-            var6 = var4.module_excluded(var5)
-            assert var6 is False
-            var7 = var4.add(var0)
-        except BaseException:
-            pass
-
-
-    def test_case_6(self):
-        try:
-            var0 = 'QFDoO+w'
-            var1 = module0.tracewrapper()
-            assert var1 is not None
-            var2 = var1.stop()
-            assert var2 is None
-            var3 = module0.tracewrapper()
-            assert var3 is not None
-            var4 = {}
-            var5 = var3.module_excluded(var4)
-            assert var5 is False
-            var6 = var3.add_module_exclusion(var0)
-            assert var6 is None
-            var7 = module0.TracerClass()
-            assert var7 is not None
-            var8 = var7.stop()
-            assert var8 is None
-            var9 = module0.tracewrapper()
-            assert var9 is not None
-            var10 = module0.tracewrapper()
-            assert var10 is not None
-            var11 = var10.delete(var9)
-            assert var11 is None
-            var12 = 'OOhmDmiz'
-            var13 = [var12, var12]
-            var14 = {var10}
-            var15 = module0.tracewrapper()
-            assert var15 is not None
-            var16 = module0.tracerdespatcher(var14, var15, var12)
-        except BaseException:
-            pass
-
-
-    def test_case_7(self):
-        try:
-            var0 = 3148
-            var1 = {var0: var0, var0: var0}
-            var2 = module0.tracewrapper()
-            assert var2 is not None
-            var3 = module0.tracewrapper()
-            assert var3 is not None
-            var4 = var2.delete_function_exclusion(var1)
-        except BaseException:
-            pass
-
-
-    def test_case_8(self):
-        try:
-            var0 = module0.TracerClass()
-            assert var0 is not None
-            var1 = var0.start()
-            assert var1 is None
-            var2 = var0.start()
-            assert var2 is None
-            var3 = 581.69772
-            var4 = module0.tracewrapper()
-            assert var4 is not None
-            var5 = b'\x80\x89\x92\xb0\xee'
-            var6 = var0.trace(var3, var5, var0)
-            assert var6 is None
-            var7 = {var0: var0}
-            var8 = [var7, var7]
-            var9 = 'zYhYs#IIV3gOd`L@o'
-            var10 = set()
-            var11 = 1206
-            var12 = module0.tracewrapper()
-            assert var12 is not None
-            var13 = var12.start()
-            assert var13 is None
-            var14 = var12.module_excluded(var11)
-            assert var14 is False
-            var15 = var12.add(var10)
-        except BaseException:
-            pass
+      print(f"Trace1 | {code.co_name}\n", end=' ')
+      return show_trace1
