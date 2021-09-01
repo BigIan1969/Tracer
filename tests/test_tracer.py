@@ -16,54 +16,115 @@ class test(unittest.TestCase):
         assert inst2.module_excluded("test"), "Tracer Object should be static (moduleexclusions)"
         inst1.add_event_filter(show_trace1,"call")
         assert inst2.event_filter(show_trace1,"call"), "Tracer Object should be static (filters)"
+    def test_types_tracer_add(self):
+        tracer = module0.tracewrapper()
+        testval=0
+        exp=False
+        try:
+            tracer.add(testval)
+        except:
+            exp=True
+        assert exp, "Expected type exeception tracer.add expects a function type"
+        exp=False
+        try:
+            tracer.add(show_trace1)
+        except:
+            exp=True
+        assert not exp, "Function type produced an exception on tracer.add()"
 
-    def test_case_0(self):
-        var0 = module0.tracewrapperClass()
-        assert var0 is not None
-        var1 = '9'
-        var2 = var0.stop()
-        assert var2 is None
-        var3 = module0.tracewrapper()
-        assert var3 is not None
-        var4 = var3.delete(var1)
-        assert var4 is None
-        var5 = var0.start()
-        assert var5 is None
-        var6 = [var2]
-        var7 = var3.delete(var6)
-        assert var7 is None
+    def test_types_tracer_add_function_excusion(self):
+        tracer = module0.tracewrapper()
+        testval=0
+        exp=False
+        try:
+            tracer.add_function_exclusion(testval)
+        except:
+            exp=True
+        assert exp, "Expected type str on tracer.add_function_exclusion()"
+        exp=False
+        try:
+            tracer.add_function_exclusion("test str")
+        except:
+            exp=True
+        assert not exp, "String type produced an exception on tracer.add_function_exclusion()"
+
+    def test_types_tracer_delete_function_excusion(self):
+        tracer = module0.tracewrapper()
+        testval=0
+        exp=False
+        try:
+            tracer.delete_function_exclusion(testval)
+        except:
+            exp=True
+        assert exp, "Expected type str on tracer.delete_function_exclusion()"
+        exp=False
+        tracer.add_function_exclusion("test")
+        try:
+            tracer.delete_function_exclusion("test")
+        except:
+            exp=True
+        assert not exp, "String type produced an exception on tracer.delete_function_exclusion()"
+
+    def test_types_tracer_function_excluded(self):
+        tracer = module0.tracewrapper()
+        testval=0
+        exp=False
+        tracer.add_function_exclusion("test")
+        try:
+            assert not tracer.function_excluded("test")
+            assert tracer.function_excluded("not a test")
+        except:
+            exp=True
+        assert exp, "function_excluded() not working"
+
+    def test_types_tracer_add_module_excusion(self):
+        tracer = module0.tracewrapper()
+        testval=0
+        exp=False
+        try:
+            tracer.add_module_exclusion(testval)
+        except:
+            exp=True
+        assert exp, "Expected type str on tracer.add_module_exclusion()"
+        exp=False
+        try:
+            tracer.add_module_exclusion("test str")
+        except:
+            exp=True
+        assert not exp, "String type produced an exception on tracer.add_module_exclusion()"
+
+    def test_types_tracer_delete_module_excusion(self):
+        tracer = module0.tracewrapper()
+        testval=0
+        exp=False
+        try:
+            tracer.delete_module_exclusion(testval)
+        except:
+            exp=True
+        assert exp, "Expected type str on tracer.delete_module_exclusion()"
+        exp=False
+        tracer.add_module_exclusion("test")
+        try:
+            tracer.delete_module_exclusion("test")
+        except:
+            exp=True
+        assert not exp, "String type produced an exception on tracer.delete_module_exclusion()"
 
 
-    def test_case_1(self):
-        var0 = module0.TracerClass()
-        assert var0 is not None
-        var1 = var0.stop()
-        assert var1 is None
-        var2 = module0.TracerClass()
-        assert var2 is not None
-        var3 = 'sLS#_\x0bW_Q0Bt*pd'
-        var4 = module0.tracewrapper()
-        assert var4 is not None
-        var5 = var4.delete_function_exclusion(var3)
-        assert var5 is None
-        var6 = 'J?\\iN'
-        var7 = b''
-        var8 = {var2}
-        var9 = var2.trace(var6, var7, var8)
-        assert var9 is None
-        var10 = module0.TracerClass()
-        assert var10 is not None
-        var11 = {}
-        var12 = ',KBmn_4P'
-        var13 = var0.trace(var10, var11, var12)
-        assert var13 is None
-        var14 = var2.start()
-        assert var14 is None
-        var15 = var2.start()
-        assert var15 is None
-        var16 = 'k~^$'
-        var17 = var4.add_function_exclusion(var16)
-        assert var17 is None
+    def test_types_tracer_module_excluded(self):
+        tracer = module0.tracewrapper()
+        testval=0
+        exp=False
+        tracer.add_module_exclusion("test")
+        try:
+            assert not tracer.module_excluded("test")
+            assert tracer.module_excluded("not a test")
+        except:
+            exp=True
+        assert exp, "module_excluded() not working"
+
+
+
 #dependencies
 def show_trace1(frame, event, arg):
       code = frame.f_code

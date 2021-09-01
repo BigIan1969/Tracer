@@ -22,7 +22,7 @@
 
 import sys
 import types
-from pathlib import *
+from pathlib import Path
 
 class tracewrapper():
     """
@@ -55,7 +55,7 @@ class tracewrapper():
             tracewrapper.add_function_exclusion(func.__name__)
 
         else:
-            assert type(func) is FunctionType, "Passed function is not a function or a method"
+            assert isinstance(func, FunctionType), "Passed function is not a function or a method"
 
     @staticmethod
     def delete( func):
@@ -106,44 +106,39 @@ class tracewrapper():
     @staticmethod
     def add_function_exclusion(ex):
         """Add a function to exclude from all trace functions or methods"""
-        assert type(ex) is str, "Exclusion {ex} is not string"
+        assert isinstance(ex, str), "Exclusion {ex} is not string"
         tracewrapper.functionexclusions.append(ex)
 
     @staticmethod
     def delete_function_exclusion(ex):
         """Remove a function exclusion"""
-        assert type(ex) is str, "Exclusion {ex} is not string"
+        assert isinstance(ex, str), "Exclusion {ex} is not string"
         if ex in tracewrapper.functionexclusions:
             tracewrapper.functionexclusions.remove(ex)
 
     @staticmethod
     def function_excluded(ex):
         """Returns True if function is excluded"""
-        if ex in tracewrapper.functionexclusions:
-            return True
-        else:
-            return False
+        return bool(ex in tracewrapper.functionexclusions)
+
 #Module Exclusions
     @staticmethod
     def add_module_exclusion(ex):
         """Add a module to be excluded from all trace functions & methods"""
-        assert type(ex) is str, "Exclusion {ex} is not string"
+        assert isinstance(ex, str), "Exclusion {ex} is not string"
         tracewrapper.moduleexclusions.append(ex)
 
     @staticmethod
     def delete_module_exclusion(ex):
         """Removes a module exclusion"""
-        assert type(ex) is str, "Exclusion {ex} is not string"
+        assert isinstance(ex, str), "Exclusion {ex} is not string"
         if ex in tracewrapper.moduleexclusions:
             tracewrapper.moduleexclusions.remove(ex)
 
     @staticmethod
     def module_excluded(ex):
         """Returns True if a module is to be excluded"""
-        if Path(ex).name in tracewrapper.moduleexclusions:
-            return True
-        else:
-            return False
+        return bool(Path(ex).name in tracewrapper.moduleexclusions)
 
     @staticmethod
     def start():
