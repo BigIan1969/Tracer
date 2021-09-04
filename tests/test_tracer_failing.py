@@ -9,7 +9,7 @@ class test(unittest.TestCase):
         inst2 = module0.tracewrapper()
         assert inst2 is not None
         inst1.add_function_exclusion("test")
-        assert inst2.function_excluded("test")==True, "Tracer Object should be static (functionexclusions)"
+        assert inst2.function_excluded("test") is True, "Tracer Object should be static (functionexclusions)"
         inst1.add(show_trace1)
         assert inst2.functions[0] is inst1.functions[0], "Tracer Object should be static (functions)"
         inst1.add_module_exclusion("test")
