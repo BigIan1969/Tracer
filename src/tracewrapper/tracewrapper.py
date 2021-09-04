@@ -55,7 +55,7 @@ class tracewrapper():
             tracewrapper.add_function_exclusion(func.__name__)
 
         else:
-            assert isinstance(func, FunctionType), "Passed function is not a function or a method"
+            assert isinstance(func, types.FunctionType), "Passed function is not a function or a method"
 
     @staticmethod
     def delete( func):

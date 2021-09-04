@@ -9,7 +9,7 @@ class test(unittest.TestCase):
         inst2 = module0.tracewrapper()
         assert inst2 is not None
         inst1.add_function_exclusion("test")
-        assert inst2.function_excluded("test")==True, "Tracer Object should be static (functionexclusions)"
+        assert inst2.function_excluded("test") is True, "Tracer Object should be static (functionexclusions)"
         inst1.add(show_trace1)
         assert inst2.functions[0] is inst1.functions[0], "Tracer Object should be static (functions)"
         inst1.add_module_exclusion("test")
@@ -22,13 +22,13 @@ class test(unittest.TestCase):
         exp=False
         try:
             tracer.add(testval)
-        except:
+        except AssertionError:
             exp=True
         assert exp, "Expected type exeception tracer.add expects a function type"
         exp=False
         try:
             tracer.add(show_trace1)
-        except:
+        except AssertionError:
             exp=True
         assert not exp, "Function type produced an exception on tracer.add()"
 
@@ -38,13 +38,13 @@ class test(unittest.TestCase):
         exp=False
         try:
             tracer.add_function_exclusion(testval)
-        except:
+        except AssertionError:
             exp=True
         assert exp, "Expected type str on tracer.add_function_exclusion()"
         exp=False
         try:
             tracer.add_function_exclusion("test str")
-        except:
+        except AssertionError:
             exp=True
         assert not exp, "String type produced an exception on tracer.add_function_exclusion()"
 
@@ -54,14 +54,14 @@ class test(unittest.TestCase):
         exp=False
         try:
             tracer.delete_function_exclusion(testval)
-        except:
+        except AssertionError:
             exp=True
         assert exp, "Expected type str on tracer.delete_function_exclusion()"
         exp=False
         tracer.add_function_exclusion("test")
         try:
             tracer.delete_function_exclusion("test")
-        except:
+        except AssertionError:
             exp=True
         assert not exp, "String type produced an exception on tracer.delete_function_exclusion()"
 
@@ -73,7 +73,7 @@ class test(unittest.TestCase):
         try:
             assert not tracer.function_excluded("test")
             assert tracer.function_excluded("not a test")
-        except:
+        except AssertionError:
             exp=True
         assert exp, "function_excluded() not working"
 
@@ -83,13 +83,13 @@ class test(unittest.TestCase):
         exp=False
         try:
             tracer.add_module_exclusion(testval)
-        except:
+        except AssertionError:
             exp=True
         assert exp, "Expected type str on tracer.add_module_exclusion()"
         exp=False
         try:
             tracer.add_module_exclusion("test str")
-        except:
+        except AssertionError:
             exp=True
         assert not exp, "String type produced an exception on tracer.add_module_exclusion()"
 
@@ -99,14 +99,14 @@ class test(unittest.TestCase):
         exp=False
         try:
             tracer.delete_module_exclusion(testval)
-        except:
+        except AssertionError:
             exp=True
         assert exp, "Expected type str on tracer.delete_module_exclusion()"
         exp=False
         tracer.add_module_exclusion("test")
         try:
             tracer.delete_module_exclusion("test")
-        except:
+        except AssertionError:
             exp=True
         assert not exp, "String type produced an exception on tracer.delete_module_exclusion()"
 
@@ -119,7 +119,7 @@ class test(unittest.TestCase):
         try:
             assert not tracer.module_excluded("test")
             assert tracer.module_excluded("not a test")
-        except:
+        except AssertionError:
             exp=True
         assert exp, "module_excluded() not working"
 
